@@ -15,15 +15,23 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     protected $scopeConfig;
 
     /**
+     * @var \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory
+     */
+    protected $logFactory;
+
+    /**
      * @param \Magento\Framework\Session\SessionManagerInterface $session
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
      */
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
     ) {
         $this->session = $session;
         $this->scopeConfig = $scopeConfig;
+        $this->logFactory = $logFactory;
     }
 
     /**
@@ -38,6 +46,9 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
         $viewedIds = $this->getRecentlyViewedProductIds();
 
         if ($productId && !in_array($productId, $viewedIds)) {
+            if (count($viewedIds)) {
+                $this->logFactory->create()->insertRelations($productId, $viewedIds);
+            }
             $this->addRecentlyViewedProductId($productId);
         }
     }

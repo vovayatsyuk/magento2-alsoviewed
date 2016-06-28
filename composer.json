@@ -1,0 +1,23 @@
+{
+    "name": "vovayatsyuk/alsoviewed",
+    "description": "Product suggestions, based on people's activity",
+    "keywords": [
+        "alsoviewed",
+        "recommendations",
+        "suggestions",
+        "sales booster",
+        "People who viewed this item also viewed"
+    ],
+    "type": "magento2-module",
+    "version": "0.0.1",
+    "license": "OSL-3.0",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0"
+    },
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Vovayatsyuk\\Alsoviewed\\": ""
+        }
+    }
+}

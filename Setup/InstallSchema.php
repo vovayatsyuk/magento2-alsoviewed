@@ -38,20 +38,6 @@ class InstallSchema implements InstallSchemaInterface
                 ['unsigned' => true, 'nullable' => false],
                 'Related Product ID'
             )
-            ->addForeignKey(
-                $setup->getFkName('alsoviewed_log', 'product_id', 'catalog_product_entity', 'entity_id'),
-                'product_id',
-                $setup->getTable('catalog_product_entity'),
-                'entity_id',
-                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-            )
-            ->addForeignKey(
-                $setup->getFkName('alsoviewed_log', 'related_product_id', 'catalog_product_entity', 'entity_id'),
-                'related_product_id',
-                $setup->getTable('catalog_product_entity'),
-                'entity_id',
-                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-            )
             ->setComment('Alsoviewed Log Table');
 
         $setup->getConnection()->createTable($table);

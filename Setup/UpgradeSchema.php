@@ -16,6 +16,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->createLogTable($setup);
         }
 
+        if (version_compare($context->getVersion(), '0.0.3', '<')) {
+            $this->dropForeignKeysFromLogTable($setup);
+        }
+
         $setup->endSetup();
     }
 
@@ -61,5 +65,19 @@ class UpgradeSchema implements UpgradeSchemaInterface
             ->setComment('Alsoviewed Log Table');
 
         $setup->getConnection()->createTable($table);
+    }
+
+    public function dropForeignKeysFromLogTable(SchemaSetupInterface $setup)
+    {
+        $table = $setup->getTable('alsoviewed_log');
+        $keys = [
+            $setup->getFkName('alsoviewed_log', 'product_id', 'catalog_product_entity', 'entity_id'),
+            $setup->getFkName('alsoviewed_log', 'related_product_id', 'catalog_product_entity', 'entity_id')
+        ];
+
+        foreach ($keys as $key) {
+            $setup->getConnection()->dropForeignKey($table, $key);
+            $setup->getConnection()->dropIndex($table, $key);
+        }
     }
 }

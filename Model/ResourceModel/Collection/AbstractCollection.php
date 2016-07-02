@@ -2,7 +2,9 @@
 
 namespace Vovayatsyuk\Alsoviewed\Model\ResourceModel\Collection;
 
-abstract class AbstractCollection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+abstract class AbstractCollection
+    extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+    implements CollectionInterface
 {
     protected $_map = array('fields' => array(
         'entity_id'            => 'main_table.entity_id',

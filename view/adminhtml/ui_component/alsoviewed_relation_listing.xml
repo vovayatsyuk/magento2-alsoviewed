@@ -3,25 +3,25 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">alsoviewed_log_listing.alsoviewed_log_listing_data_source</item>
-            <item name="deps" xsi:type="string">alsoviewed_log_listing.alsoviewed_log_listing_data_source</item>
+            <item name="provider" xsi:type="string">alsoviewed_relation_listing.alsoviewed_relation_listing_data_source</item>
+            <item name="deps" xsi:type="string">alsoviewed_relation_listing.alsoviewed_relation_listing_data_source</item>
         </item>
-        <item name="spinner" xsi:type="string">alsoviewed_log_columns</item>
-        <item name="buttons" xsi:type="array">
+        <item name="spinner" xsi:type="string">alsoviewed_relation_columns</item>
+        <!-- <item name="buttons" xsi:type="array">
             <item name="process" xsi:type="array">
-                <item name="name" xsi:type="string">process</item>
-                <item name="label" xsi:type="string" translate="true">Process Log</item>
+                <item name="name" xsi:type="string">new</item>
+                <item name="label" xsi:type="string" translate="true">New Relation</item>
                 <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/process</item>
+                <item name="url" xsi:type="string">*/*/newAction</item>
             </item>
-        </item>
+        </item> -->
     </argument>
-    <dataSource name="alsoviewed_log_listing_data_source">
+    <dataSource name="alsoviewed_relation_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Vovayatsyuk\Alsoviewed\Ui\DataProvider\AbstractDataProvider</argument>
-            <argument name="collection" xsi:type="object">Vovayatsyuk\Alsoviewed\Model\ResourceModel\Log\Collection</argument>
-            <argument name="name" xsi:type="string">alsoviewed_log_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="collection" xsi:type="object">Vovayatsyuk\Alsoviewed\Model\ResourceModel\Relation\Collection</argument>
+            <argument name="name" xsi:type="string">alsoviewed_relation_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">relation_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -37,7 +37,23 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="alsoviewed_log_columns">
+    <columns name="alsoviewed_relation_columns">
+        <!-- <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">relation_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="relation_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column> -->
         <column name="product_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

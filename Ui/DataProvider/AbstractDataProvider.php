@@ -1,13 +1,13 @@
 <?php
 
-namespace Vovayatsyuk\Alsoviewed\Ui\DataProvider\Log;
+namespace Vovayatsyuk\Alsoviewed\Ui\DataProvider;
 
-class LogDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class AbstractDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
-     * Log collection
+     * Alsoviewed collection
      *
-     * @var \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Log\Collection
+     * @var \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Collection\CollectionInterface
      */
     protected $collection;
 
@@ -22,7 +22,7 @@ class LogDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Log\CollectionFactory $collectionFactory
+     * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Collection\CollectionInterface $collection
      * @param \Magento\Ui\DataProvider\AddFieldToCollectionInterface[] $addFieldStrategies
      * @param array $meta
      * @param array $data
@@ -31,13 +31,13 @@ class LogDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Log\CollectionFactory $collectionFactory,
+        \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Collection\CollectionInterface $collection,
         array $addFieldStrategies = [],
         array $meta = [],
         array $data = []
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-        $this->collection = $collectionFactory->create();
+        $this->collection = $collection;
         $this->addFieldStrategies = $addFieldStrategies;
     }
 

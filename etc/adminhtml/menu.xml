@@ -20,14 +20,14 @@
             action="alsoviewed/log/index"
             resource="Vovayatsyuk_Alsoviewed::log"
         />
-        <add id="Vovayatsyuk_Alsoviewed::alsoviewed_relations"
+        <add id="Vovayatsyuk_Alsoviewed::alsoviewed_relation"
             title="Relations"
             translate="title"
             sortOrder="20"
             module="Vovayatsyuk_Alsoviewed"
             parent="Vovayatsyuk_Alsoviewed::alsoviewed"
-            action="alsoviewed/relations/index"
-            resource="Vovayatsyuk_Alsoviewed::relations"
+            action="alsoviewed/relation/index"
+            resource="Vovayatsyuk_Alsoviewed::relation"
         />
     </menu>
 </config>

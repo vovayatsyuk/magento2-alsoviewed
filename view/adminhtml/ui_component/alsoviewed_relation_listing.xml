@@ -49,7 +49,6 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
-                    <item name="sorting" xsi:type="string">asc</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
                 </item>
             </argument>
@@ -69,6 +68,57 @@
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Related Product Name</item>
                     <item name="add_field" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+        <column name="weight">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Weight</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="position">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Position</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Vovayatsyuk\Alsoviewed\Model\Relation\Source\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                </item>
+            </argument>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Updated At</item>
                 </item>
             </argument>
         </column>

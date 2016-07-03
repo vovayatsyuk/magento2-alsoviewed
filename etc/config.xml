@@ -6,6 +6,9 @@
             <session>
                 <limit>10</limit>
             </session>
+            <perfomance>
+                <chunk_size>500</chunk_size>
+            </perfomance>
         </alsoviewed>
     </default>
 </config>

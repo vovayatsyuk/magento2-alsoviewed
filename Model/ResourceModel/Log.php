@@ -31,4 +31,67 @@ class Log extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         );
         return $this;
     }
+
+    /**
+     * Retrieve product relations with weight
+     *
+     * @return array
+     */
+    public function getGroupedRelations()
+    {
+        $this->cleanOrphans();
+
+        $select = $this->getConnection()->select()
+            ->from($this->getMainTable(), [
+                'product_id',
+                'related_product_id',
+                'weight' => 'COUNT(entity_id)'
+            ])
+            ->group(['product_id', 'related_product_id']);
+
+        return $this->getConnection()->fetchAll($select);
+    }
+
+    /**
+     * Remove orphan records
+     *
+     * @return int Number of affected rows
+     */
+    public function cleanOrphans()
+    {
+        $tableName = $this->getTable('catalog_product_entity');
+        $select  = $this->getConnection()->select();
+
+        $select->from($this->getMainTable(), 'entity_id')
+            ->joinLeft(
+                ['e' => $tableName],
+                'product_id = e.entity_id',
+                []
+            )
+            ->orWhere('e.entity_id IS NULL');
+
+        $select->joinLeft(
+                ['e2' => $tableName],
+                'related_product_id = e2.entity_id',
+                []
+            )
+            ->orWhere('e2.entity_id IS NULL');
+
+        $ids = $this->getConnection()->fetchCol($select);
+        if (!$ids) {
+            return 0;
+        }
+        return $this->clean(['entity_id IN (?)' => $ids]);
+    }
+
+    /**
+     * Remove matched records
+     *
+     * @param  string $where
+     * @return int Number of affected rows
+     */
+    public function clean($where = '')
+    {
+        return $this->getConnection()->delete($this->getMainTable(), $where);
+    }
 }

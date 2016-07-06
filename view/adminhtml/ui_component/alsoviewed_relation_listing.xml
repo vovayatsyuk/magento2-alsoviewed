@@ -166,5 +166,12 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn name="actions" class="Vovayatsyuk\Alsoviewed\Ui\Component\Listing\Column\RelationActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">relation_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>

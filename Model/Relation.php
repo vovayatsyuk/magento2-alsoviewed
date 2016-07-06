@@ -11,11 +11,92 @@ class Relation extends AbstractModel implements RelationInterface
     const STATUS_DISABLED   = 0;
 
     /**
+     * @var Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    protected $productCollectionFactory;
+
+    /**
+     * @var Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected $products;
+
+    /**
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+        $this->productCollectionFactory = $productCollectionFactory;
+        parent::__construct($context, $registry, $resource, $resourceCollection);
+    }
+
+    /**
      * @return void
      */
     protected function _construct()
     {
         $this->_init('Vovayatsyuk\Alsoviewed\Model\ResourceModel\Relation');
+        // $this->setData('id_field_name', 'relation_id');
+    }
+
+    /**
+     * Load products that are linked within this relation
+     *
+     * @return Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    public function getProducts()
+    {
+        if (!$this->products) {
+            $this->products = $this->productCollectionFactory->create()
+                ->addAttributeToSelect('name')
+                ->addFieldToFilter('entity_id', array(
+                    'in' => array(
+                        $this->getProductId(),
+                        $this->getRelatedProductId()
+                    )
+                ));
+        }
+        return $this->products;
+    }
+
+    /**
+     * Get product model by product_id
+     *
+     * @return Magento\Catalog\Model\Product
+     */
+    public function getProduct()
+    {
+        return $this->getProducts()->getItemById($this->getProductId());
+    }
+
+    /**
+     * Get product model by related_product_id
+     *
+     * @return Magento\Catalog\Model\Product
+     */
+    public function getRelatedProduct()
+    {
+        return $this->getProducts()->getItemById($this->getRelatedProductId());
+    }
+
+    /**
+     * Get relation title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->getProduct()->getName() . ' - ' . $this->getRelatedProduct()->getName();
     }
 
     /**

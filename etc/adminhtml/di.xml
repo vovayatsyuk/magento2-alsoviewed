@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Vovayatsyuk\Alsoviewed\Model\Relation\Locator\LocatorInterface"
+        type="Vovayatsyuk\Alsoviewed\Model\Relation\Locator\RegistryLocator"/>
     <type name="Vovayatsyuk\Alsoviewed\Ui\DataProvider\AbstractDataProvider">
         <arguments>
             <argument name="addFieldStrategies" xsi:type="array">

@@ -89,14 +89,14 @@
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="relation_id">
+        <!-- <column name="relation_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
                 </item>
             </argument>
-        </column>
+        </column> -->
         <column name="product_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

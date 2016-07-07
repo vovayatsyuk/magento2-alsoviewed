@@ -21,6 +21,11 @@ class Relation extends AbstractModel implements RelationInterface
     protected $products;
 
     /**
+     * @var Vovayatsyuk\Alsoviewed\Model\Relation
+     */
+    protected $inversedRelation;
+
+    /**
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
@@ -47,6 +52,28 @@ class Relation extends AbstractModel implements RelationInterface
     {
         $this->_init('Vovayatsyuk\Alsoviewed\Model\ResourceModel\Relation');
         // $this->setData('id_field_name', 'relation_id');
+    }
+
+    /**
+     * Retrieve inversed relation
+     *
+     * @return Vovayatsyuk\Alsoviewed\Model\Relation
+     */
+    public function getInversedRelation()
+    {
+        if (!$this->inversedRelation) {
+            $this->inversedRelation = $this->getCollection()
+                ->addFieldToFilter('product_id', $this->getRelatedProductId())
+                ->addFieldToFilter('related_product_id', $this->getProductId())
+                ->getFirstItem();
+
+            if (!$this->inversedRelation->getId()) {
+                $this->inversedRelation
+                    ->setProductId($this->getRelatedProductId())
+                    ->setRelatedProductId($this->getProductId());
+            }
+        }
+        return $this->inversedRelation;
     }
 
     /**

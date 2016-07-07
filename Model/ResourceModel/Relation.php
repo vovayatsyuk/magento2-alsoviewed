@@ -12,17 +12,26 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected $backendConfig;
 
     /**
+     * @var \Magento\Framework\EntityManager\EntityManager
+     */
+    protected $entityManager;
+
+    /**
      * Class constructor
      *
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     * @param \Magento\Backend\App\ConfigInterface $backendConfig
+     * @param \Magento\Framework\EntityManager\EntityManager $entityManager
      * @param string $connectionName
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Backend\App\ConfigInterface $backendConfig,
+        \Magento\Framework\EntityManager\EntityManager $entityManager,
         $connectionName = null
     ) {
         $this->backendConfig = $backendConfig;
+        $this->entityManager = $entityManager;
         parent::__construct($context, $connectionName);
     }
 
@@ -54,5 +63,23 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 ]
             );
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function save(\Magento\Framework\Model\AbstractModel $object)
+    {
+        $this->entityManager->save($object);
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete(\Magento\Framework\Model\AbstractModel $object)
+    {
+        $this->entityManager->delete($object);
+        return $this;
     }
 }

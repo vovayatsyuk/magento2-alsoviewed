@@ -6,7 +6,6 @@ use Vovayatsyuk\Alsoviewed\Model\RelationFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\TestFramework\Inspection\Exception;
 
 class Save extends \Magento\Backend\App\Action
 {

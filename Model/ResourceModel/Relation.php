@@ -12,11 +12,6 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected $backendConfig;
 
     /**
-     * @var \Magento\Framework\EntityManager\EntityManager
-     */
-    protected $entityManager;
-
-    /**
      * Class constructor
      *
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
@@ -27,17 +22,27 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Backend\App\ConfigInterface $backendConfig,
-        \Magento\Framework\EntityManager\EntityManager $entityManager,
         $connectionName = null
     ) {
         $this->backendConfig = $backendConfig;
-        $this->entityManager = $entityManager;
         parent::__construct($context, $connectionName);
     }
 
     protected function _construct()
     {
         $this->_init('alsoviewed_relation', 'relation_id');
+    }
+
+    /**
+     * Perform actions before object save
+     *
+     * @param \Magento\Framework\Model\AbstractModel|\Magento\Framework\DataObject $object
+     * @return $this
+     */
+    protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)
+    {
+        $object->setUpdatedAt(time());
+        return $this;
     }
 
     public function updateRelations($relationsData)
@@ -63,23 +68,5 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 ]
             );
         }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function save(\Magento\Framework\Model\AbstractModel $object)
-    {
-        $this->entityManager->save($object);
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function delete(\Magento\Framework\Model\AbstractModel $object)
-    {
-        $this->entityManager->delete($object);
-        return $this;
     }
 }

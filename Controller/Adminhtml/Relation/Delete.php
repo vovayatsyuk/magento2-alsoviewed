@@ -13,7 +13,7 @@ class Delete extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Vovayatsyuk_Alsoviewed::relation';
+    const ADMIN_RESOURCE = 'Vovayatsyuk_Alsoviewed::relation_delete';
 
     /**
      * @var RelationFactory

@@ -14,6 +14,8 @@
         <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
             <item name="back" xsi:type="string">Vovayatsyuk\Alsoviewed\Block\Adminhtml\Relation\Edit\Button\Back</item>
+            <item name="delete" xsi:type="string">Vovayatsyuk\Alsoviewed\Block\Adminhtml\Relation\Edit\Button\Delete</item>
+            <item name="deleteWithInversed" xsi:type="string">Vovayatsyuk\Alsoviewed\Block\Adminhtml\Relation\Edit\Button\DeleteWithInversed</item>
             <item name="save" xsi:type="string">Vovayatsyuk\Alsoviewed\Block\Adminhtml\Relation\Edit\Button\Save</item>
         </item>
     </argument>

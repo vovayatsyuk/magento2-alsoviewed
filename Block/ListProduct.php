@@ -21,6 +21,11 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     protected $productCollectionFactory;
 
     /**
+     * @var \Magento\Catalog\Block\Product\ProductList\Toolbar
+     */
+    protected $toolbarBlock;
+
+    /**
      * @param \Magento\Catalog\Block\Product\Context $context
      * @param \Magento\Framework\Data\Helper\PostHelper $postDataHelper
      * @param \Magento\Catalog\Model\Layer\Resolver $layerResolver
@@ -79,6 +84,24 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
             $basis = explode(',', $basis);
         }
         return $basis;
+    }
+
+    public function getToolbarBlock()
+    {
+        if (null === $this->toolbarBlock) {
+            $this->toolbarBlock = parent::getToolbarBlock();
+        }
+        return $this->toolbarBlock;
+    }
+
+    protected function _beforeToHtml()
+    {
+        $toolbar = $this->getToolbarBlock();
+
+        $toolbar->setData('_current_limit', $this->getData('products_count'));
+        $toolbar->setData('_current_grid_mode', $this->getData('mode'));
+
+        return parent::_beforeToHtml();
     }
 
     public function getToolbarHtml()

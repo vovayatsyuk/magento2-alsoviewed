@@ -10,19 +10,11 @@
                 <action method="setTitle">
                     <argument translate="true" name="title" xsi:type="string">Also Viewed Products</argument>
                 </action>
-                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="alsoviewed_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
-                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
-                    <action method="setData">
-                        <argument name="key" xsi:type="string">_current_limit</argument>
-                        <argument name="value" xsi:type="string">6</argument>
-                    </action>
-                    <action method="setData">
-                        <argument name="key" xsi:type="string">_current_grid_mode</argument>
-                        <argument name="value" xsi:type="string">grid</argument>
-                    </action>
-                </block>
-                <action method="setToolbarBlockName">
-                    <argument name="name" xsi:type="string">alsoviewed_list_toolbar</argument>
+                <action method="setProductsCount">
+                    <argument name="products_count" xsi:type="number">6</argument>
+                </action>
+                <action method="setMode">
+                    <argument name="mode" xsi:type="string">grid</argument>
                 </action>
             </block>
         </referenceBlock>

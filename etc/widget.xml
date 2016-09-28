@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="alsoviewed_products" class="Vovayatsyuk\Alsoviewed\Block\Widget\ListProduct" is_email_compatible="true"
+            placeholder_image="Vovayatsyuk_Alsoviewed::images/list_product.png" ttl="86400">
+        <label translate="true">Also Viewed Products</label>
+        <description></description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+                <value>People who viewed this product also viewed</value>
+            </parameter>
+            <parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products to Display</label>
+                <value>6</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="Magento_Catalog::product/list.phtml" selected="true">
+                        <label translate="true">Default Template</label>
+                    </option>
+                    <option name="sidebar" value="product/sidebar/list.phtml">
+                        <label translate="true">Sidebar Template</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="mode" xsi:type="select" visible="true">
+                <label translate="true">Mode</label>
+                <options>
+                    <option name="grid" value="grid" selected="true">
+                        <label translate="true">Grid</label>
+                    </option>
+                    <option name="list" value="list">
+                        <label translate="true">List</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="basis" xsi:type="multiselect" visible="true">
+                <label translate="true">Build Recommendations on</label>
+                <options>
+                    <option name="current" value="current" selected="true">
+                        <label translate="true">Currently Viewed Product</label>
+                    </option>
+                    <option name="viewed" value="viewed">
+                        <label translate="true">Recently Viewed Products</label>
+                    </option>
+                    <option name="compared" value="compared">
+                        <label translate="true">Recently Compared Products</label>
+                    </option>
+                    <option name="cart" value="cart">
+                        <label translate="true">Shopping Cart Items</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="css_class" xsi:type="text" required="false" visible="true">
+                <label translate="true">Block css class</label>
+                <value>widget alsoviewed-products</value>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="sidebar.main">
+                <template name="sidebar" value="sidebar" />
+            </container>
+            <container name="content">
+                <template name="grid" value="default" />
+            </container>
+            <container name="sidebar.additional">
+                <template name="sidebar" value="sidebar" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

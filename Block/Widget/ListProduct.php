@@ -18,14 +18,16 @@ class ListProduct extends \Magento\Framework\View\Element\Template
             $data
         );
 
-        // Populate `this` block data
-        $this->setBlockTitle($this->getTitle());
-        $this->setBlockCss($this->getCssClass());
-        if ($this->getNoWrapper()) {
-            $this->setTemplate('Magento_Theme::html/container.phtml');
-        } else {
-            $this->setTemplate('Magento_Theme::html/block.phtml');
+        // ability to use different title (tab) and block title (content)
+        if (!$this->getBlockTitle()) {
+            $this->setBlockTitle($this->getTitle());
         }
+
+        // ability to set custom block wrapper template
+        if (!$template = $this->getBlockTemplate()) {
+            $template = 'Vovayatsyuk_Alsoviewed::block.phtml';
+        }
+        $this->setTemplate($template);
 
         return parent::_beforeToHtml();
     }

@@ -53,7 +53,7 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="css_class" xsi:type="text" required="false" visible="true">
+            <parameter name="block_css" xsi:type="text" required="false" visible="true">
                 <label translate="true">Block css class</label>
                 <value>widget alsoviewed-products</value>
             </parameter>

@@ -3,18 +3,29 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.details">
-            <block class="Vovayatsyuk\Alsoviewed\Block\ListProduct"
+            <block class="Vovayatsyuk\Alsoviewed\Block\Widget\ListProduct"
                     name="alsoviewed.products.tab"
-                    template="Magento_Catalog::product/list.phtml"
                     group="detailed_info">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::product/list.phtml</argument>
+                </action>
+                <action method="setBlockCss">
+                    <argument name="block_css" xsi:type="string">widget alsoviewed-products</argument>
+                </action>
                 <action method="setTitle">
                     <argument translate="true" name="title" xsi:type="string">Also Viewed Products</argument>
                 </action>
+                <action method="setBlockTitle">
+                    <argument translate="true" name="title" xsi:type="string">People who viewed this product also viewed</argument>
+                </action>
                 <action method="setProductsCount">
-                    <argument name="products_count" xsi:type="number">6</argument>
+                    <argument name="products_count" xsi:type="number">4</argument>
                 </action>
                 <action method="setMode">
                     <argument name="mode" xsi:type="string">grid</argument>
+                </action>
+                <action method="setBasis">
+                    <argument name="basis" xsi:type="string">current</argument>
                 </action>
             </block>
         </referenceBlock>

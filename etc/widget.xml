@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-    <widget id="alsoviewed_products" class="Vovayatsyuk\Alsoviewed\Block\Widget\ListProduct" is_email_compatible="true"
-            placeholder_image="Vovayatsyuk_Alsoviewed::images/list_product.png" ttl="86400">
+    <widget id="alsoviewed_products" class="Vovayatsyuk\Alsoviewed\Block\Widget\ListProduct" is_email_compatible="true" ttl="86400">
         <label translate="true">Also Viewed Products</label>
         <description></description>
         <parameters>

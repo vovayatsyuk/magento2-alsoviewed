@@ -35,10 +35,10 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="basis" xsi:type="multiselect" visible="true">
+            <parameter name="basis" xsi:type="multiselect" required="true" visible="true">
                 <label translate="true">Build Recommendations on</label>
                 <options>
-                    <option name="current" value="current" selected="true">
+                    <option name="current" value="current">
                         <label translate="true">Currently Viewed Product</label>
                     </option>
                     <option name="viewed" value="viewed">

@@ -5,10 +5,8 @@
         <referenceBlock name="product.info.details">
             <block class="Vovayatsyuk\Alsoviewed\Block\Widget\ListProduct"
                     name="alsoviewed.products.tab"
+                    template="Magento_Catalog::product/list.phtml"
                     group="detailed_info">
-                <action method="setTemplate">
-                    <argument name="template" xsi:type="string">Magento_Catalog::product/list.phtml</argument>
-                </action>
                 <action method="setBlockCss">
                     <argument name="block_css" xsi:type="string">widget alsoviewed-products</argument>
                 </action>

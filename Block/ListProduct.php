@@ -70,6 +70,16 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
             $this->_catalogLayer->prepareProductCollection($collection);
             $collection->addStoreFilter();
 
+            $toolbar = $this->getToolbarBlock();
+            $toolbar->setData('_current_limit', $this->getData('products_count'));
+            $toolbar->setData('_current_grid_mode', $this->getData('mode'));
+            $toolbar->setCollection($collection);
+            $this->setChild('toolbar', $toolbar);
+            $this->_eventManager->dispatch(
+                'catalog_block_product_list_collection',
+                ['collection' => $collection]
+            );
+
             $this->_productCollection = $collection;
         }
         return $this->_productCollection;
@@ -96,12 +106,8 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 
     protected function _beforeToHtml()
     {
-        $toolbar = $this->getToolbarBlock();
-
-        $toolbar->setData('_current_limit', $this->getData('products_count'));
-        $toolbar->setData('_current_grid_mode', $this->getData('mode'));
-
-        return parent::_beforeToHtml();
+        // Do not call parent! Parent logic is copied to prepareToolbar method.
+        // It was done to allow to get collection without block rendering.
     }
 
     public function getToolbarHtml()

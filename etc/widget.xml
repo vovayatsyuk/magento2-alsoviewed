@@ -24,33 +24,13 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="mode" xsi:type="select" visible="true">
+            <parameter name="mode" xsi:type="select" visible="true"
+                    source_model="Vovayatsyuk\Alsoviewed\Model\Config\Source\Listingmode">
                 <label translate="true">Mode</label>
-                <options>
-                    <option name="grid" value="grid" selected="true">
-                        <label translate="true">Grid</label>
-                    </option>
-                    <option name="list" value="list">
-                        <label translate="true">List</label>
-                    </option>
-                </options>
             </parameter>
-            <parameter name="basis" xsi:type="multiselect" required="true" visible="true">
+            <parameter name="basis" xsi:type="multiselect" required="true" visible="true"
+                    source_model="Vovayatsyuk\Alsoviewed\Model\Config\Source\Basis">
                 <label translate="true">Build Recommendations on</label>
-                <options>
-                    <option name="current" value="current">
-                        <label translate="true">Currently Viewed Product</label>
-                    </option>
-                    <option name="viewed" value="viewed">
-                        <label translate="true">Recently Viewed Products</label>
-                    </option>
-                    <option name="compared" value="compared">
-                        <label translate="true">Recently Compared Products</label>
-                    </option>
-                    <option name="cart" value="cart">
-                        <label translate="true">Shopping Cart Items</label>
-                    </option>
-                </options>
             </parameter>
             <parameter name="block_css" xsi:type="text" required="false" visible="true">
                 <label translate="true">Block css class</label>

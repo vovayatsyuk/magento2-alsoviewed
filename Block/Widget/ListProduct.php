@@ -2,7 +2,7 @@
 
 namespace Vovayatsyuk\Alsoviewed\Block\Widget;
 
-class ListProduct extends \Magento\Framework\View\Element\Template
+class ListProduct extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
     /**
      * This method allows to disable bock in product tabs

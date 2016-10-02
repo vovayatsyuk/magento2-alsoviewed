@@ -15,7 +15,15 @@ and they become more accurate.
  -  100% Open Source
  -  High Perfomance
  -  Sales booster module
- -  You definitely need this module, if you sell many similar products
+ -  Works great with third-party themes and modules
+
+### Additional features
+
+ -  Show products recommendations based on:
+    -  Currently viewed product
+    -  Recently viewed products
+    -  Recently compared products
+    -  Shopping cart items
 
 ### Installation
 

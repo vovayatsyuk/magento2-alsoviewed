@@ -1,4 +1,4 @@
-<?php if ($this->getChildBlock('products')->getLoadedProductCollection()->count()) : ?>
+<?php if ($this->getEnabled() && $this->getChildBlock('products')->getLoadedProductCollection()->count()) : ?>
     <div class="block <?php /* @escapeNotVerified */ echo $block->getBlockCss(); ?>">
         <div class="block-title"><strong><?php /* @escapeNotVerified */ echo $block->getBlockTitle(); ?></strong></div>
         <div class="block-content">

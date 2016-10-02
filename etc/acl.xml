@@ -13,6 +13,15 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magento_Catalog::config_catalog">
+                                <resource id="Vovayatsyuk_Alsoviewed::config" title="Also Viewed Products"/>
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

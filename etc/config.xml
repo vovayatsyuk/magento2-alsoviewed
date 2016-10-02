@@ -3,6 +3,15 @@
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <alsoviewed>
+            <product_tab>
+                <enabled>1</enabled>
+                <title>Also Viewed Products</title>
+                <block_title>People who viewed this product also viewed</block_title>
+                <basis>current</basis>
+                <products_count>4</products_count>
+                <mode>grid</mode>
+                <block_css>widget alsoviewed-products</block_css>
+            </product_tab>
             <session>
                 <limit>10</limit>
             </session>

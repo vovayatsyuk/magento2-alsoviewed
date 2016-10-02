@@ -7,23 +7,8 @@
                     name="alsoviewed.products.tab"
                     template="Magento_Catalog::product/list.phtml"
                     group="detailed_info">
-                <action method="setBlockCss">
-                    <argument name="block_css" xsi:type="string">widget alsoviewed-products</argument>
-                </action>
-                <action method="setTitle">
-                    <argument translate="true" name="title" xsi:type="string">Also Viewed Products</argument>
-                </action>
-                <action method="setBlockTitle">
-                    <argument translate="true" name="title" xsi:type="string">People who viewed this product also viewed</argument>
-                </action>
-                <action method="setProductsCount">
-                    <argument name="products_count" xsi:type="number">4</argument>
-                </action>
-                <action method="setMode">
-                    <argument name="mode" xsi:type="string">grid</argument>
-                </action>
-                <action method="setBasis">
-                    <argument name="basis" xsi:type="string">current</argument>
+                <action method="addDataFromConfig">
+                    <argument name="path" xsi:type="string">alsoviewed/product_tab</argument>
                 </action>
             </block>
         </referenceBlock>

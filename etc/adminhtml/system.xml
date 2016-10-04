@@ -6,7 +6,7 @@
             <label>Also Viewed Products</label>
             <tab>catalog</tab>
             <resource>Vovayatsyuk_Alsoviewed::config</resource>
-            <group id="product_tab" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="product_tab" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Product Page Tabs Integration</label>
                 <comment>These settings works with standard Magento tabs only. If you are using custom tabs module, use its manual on how to add third-party widget in tabs.</comment>
                 <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
@@ -20,7 +20,7 @@
                     <label>Block Title</label>
                 </field>
                 <field id="basis" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1">
-                    <label>Build Recommendations on</label>
+                    <label>Offer Recommendations for</label>
                     <source_model>Vovayatsyuk\Alsoviewed\Model\Config\Source\Basis</source_model>
                 </field>
                 <field id="products_count" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1">

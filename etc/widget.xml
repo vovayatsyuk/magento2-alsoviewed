@@ -30,10 +30,10 @@
             </parameter>
             <parameter name="basis" xsi:type="multiselect" required="true" visible="true"
                     source_model="Vovayatsyuk\Alsoviewed\Model\Config\Source\Basis">
-                <label translate="true">Build Recommendations on</label>
+                <label translate="true">Offer Recommendations for</label>
             </parameter>
             <parameter name="block_css" xsi:type="text" required="false" visible="true">
-                <label translate="true">Block css class</label>
+                <label translate="true">Block css classes</label>
                 <value>widget alsoviewed-products</value>
             </parameter>
         </parameters>

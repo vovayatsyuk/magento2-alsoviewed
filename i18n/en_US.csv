@@ -32,3 +32,8 @@ Relations,Relations
 "Are you sure you want to delete selected relations?","Are you sure you want to delete selected relations?"
 "Change status","Change status"
 "Updated At","Updated At"
+"Log Settings","Log Settings"
+"Ignore crawlers","Ignore crawlers"
+"Crawler's user agent regex","Crawler's user agent regex"
+"Ignore specific ip addresses","Ignore specific ip addresses"
+"Ip addresses (comma separated)","Ip addresses (comma separated)"

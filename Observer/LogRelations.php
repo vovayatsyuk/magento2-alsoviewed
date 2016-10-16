@@ -20,6 +20,11 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     protected $logFactory;
 
     /**
+     * @var \Vovayatsyuk\Alsoviewed\Helper\Data
+     */
+    protected $helper;
+
+    /**
      * @param \Magento\Framework\Session\SessionManagerInterface $session
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
@@ -27,11 +32,13 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
+        \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory,
+        \Vovayatsyuk\Alsoviewed\Helper\Data $helper
     ) {
         $this->session = $session;
         $this->scopeConfig = $scopeConfig;
         $this->logFactory = $logFactory;
+        $this->helper = $helper;
     }
 
     /**
@@ -42,6 +49,10 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+        if ($this->canIgnoreRequest()) {
+            return;
+        }
+
         $productId = $observer->getControllerAction()->getRequest()->getParam('id');
         $viewedIds = $this->getRecentlyViewedProductIds();
 
@@ -72,7 +83,7 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     }
 
     /**
-     * Get recentrly viewed product ids array
+     * Get recently viewed product ids array
      *
      * @return array
      */
@@ -83,5 +94,16 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
             return [];
         }
         return $ids;
+    }
+
+    /**
+     * Returns is request can be ignored
+     *
+     * @return boolean
+     */
+    protected function canIgnoreRequest()
+    {
+        return $this->helper->isUserAgentIgnored()
+            || $this->helper->isIpAddressIgnored();
     }
 }

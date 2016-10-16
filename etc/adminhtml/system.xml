@@ -34,6 +34,29 @@
                     <label>Block css classes</label>
                 </field>
             </group>
+            <group id="log" translate="label" type="text" sortOrder="20" showInDefault="1">
+                <label>Log Settings</label>
+                <field id="ignore_user_agent" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Ignore crawlers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ignored_user_agent" translate="label" type="text" sortOrder="11" showInDefault="1">
+                    <label>Crawler's user agent regex</label>
+                    <depends>
+                        <field id="ignore_user_agent">1</field>
+                    </depends>
+                </field>
+                <field id="ignore_ip_address" translate="label" type="select" sortOrder="20" showInDefault="1">
+                    <label>Ignore specific ip addresses</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ignored_ip_address" translate="label" type="text" sortOrder="21" showInDefault="1">
+                    <label>Ip addresses (comma separated)</label>
+                    <depends>
+                        <field id="ignore_ip_address">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>

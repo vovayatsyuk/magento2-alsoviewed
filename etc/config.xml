@@ -12,6 +12,12 @@
                 <mode>grid</mode>
                 <block_css>widget alsoviewed-products</block_css>
             </product_tab>
+            <log>
+                <ignore_user_agent>1</ignore_user_agent>
+                <ignored_user_agent><![CDATA[008|Applebot|bingbot|facebookexternalhit|FlipboardProxy|googlebot|Googlebot|MetaURI|msnbot|redditbot|slurp|tm_crawler|TweetmemeBot|Twitterbot|Yandex]]></ignored_user_agent>
+                <ignore_ip_address>0</ignore_ip_address>
+                <ignored_ip_address></ignored_ip_address>
+            </log>
             <session>
                 <limit>10</limit>
             </session>

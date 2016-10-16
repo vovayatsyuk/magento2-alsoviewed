@@ -32,3 +32,8 @@ Relations,Зв'язки
 "Are you sure you want to delete selected relations?","Ви дійсно хочете видалити обрані зв'язки?"
 "Change status","Змінити статус"
 "Updated At","Дата оновлення"
+"Log Settings","Налаштування логування"
+"Ignore crawlers","Ігнорувати краулери"
+"Crawler's user agent regex","Регулярний вираз, для визначення краулерів"
+"Ignore specific ip addresses","Ігнорувати IP-адреси"
+"Ip addresses (comma separated)","IP-адреси (розділені комами)"

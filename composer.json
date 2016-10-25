@@ -1,6 +1,6 @@
 {
     "name": "vovayatsyuk/alsoviewed",
-    "description": "People with similar interests also viewed",
+    "description": "Product recommendations module. People who viewed this item also viewed. People with similar interests also viewed.",
     "keywords": [
         "alsoviewed",
         "also viewed",

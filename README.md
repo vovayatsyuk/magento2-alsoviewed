@@ -8,7 +8,7 @@ other customers.
 
 ```bash
 cd magento2/root/folder
-composer require vovayatsyuk/alsoviewed
+composer require vovayatsyuk/magento2-alsoviewed
 bin/magento module:enable Vovayatsyuk_Alsoviewed
 bin/magento setup:upgrade
 ```

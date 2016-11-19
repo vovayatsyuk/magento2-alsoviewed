@@ -6,11 +6,11 @@ abstract class AbstractCollection
     extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
     implements CollectionInterface
 {
-    protected $_map = array('fields' => array(
+    protected $_map = ['fields' => [
         'entity_id'            => 'main_table.entity_id',
         'product_name'         => 'product_name.value',
         'related_product_name' => 'related_product_name.value'
-    ));
+    ]];
 
     protected $attributeCollectionFactory;
 
@@ -41,9 +41,9 @@ abstract class AbstractCollection
     public function addProductNameToSelect($alias = 'product_name', $column = 'product_id')
     {
         $this->getSelect()->join(
-                array($alias => $this->getProductNameTableName()),
+                [$alias => $this->getProductNameTableName()],
                 "{$column} = {$alias}.entity_id",
-                array($alias => 'value')
+                [$alias => 'value']
             )
             ->where("{$alias}.store_id = ?", 0)
             ->where("{$alias}.attribute_id = ?", $this->getProductNameAttributeId());

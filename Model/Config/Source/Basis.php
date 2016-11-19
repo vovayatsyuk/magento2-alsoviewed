@@ -26,7 +26,7 @@ class Basis implements \Magento\Framework\Option\ArrayInterface
      */
     public function toArray()
     {
-        $result = array();
+        $result = [];
         foreach ($this->toOptionArray() as $values) {
             $result[$values['value']] = $values['label'];
         }

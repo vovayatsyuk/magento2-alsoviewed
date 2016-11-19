@@ -75,11 +75,11 @@ class Save extends \Magento\Backend\App\Action
                 $relation->save();
                 if ($this->getRequest()->getParam('apply_to_inversed_relation')) {
                     $relation->getInversedRelation()
-                        ->addData(array(
+                        ->addData([
                             'weight'   => $data['weight'],
                             'position' => $data['position'],
                             'status'   => $data['status']
-                        ))
+                        ])
                         ->save();
                 }
                 $this->messageManager->addSuccess(__('You saved relation.'));

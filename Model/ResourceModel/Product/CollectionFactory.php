@@ -29,23 +29,23 @@ class CollectionFactory
     {
         $collection = $this->productCollectionFactory->create()
             ->joinTable(
-                array('alsoviewed' => 'alsoviewed_relation'),
+                ['alsoviewed' => 'alsoviewed_relation'],
                 'related_product_id=entity_id',
-                array(
+                [
                     'alsoviewed_weight'   => 'weight',
                     'alsoviewed_position' => 'position',
-                ),
-                array(
+                ],
+                [
                     'product_id' => ['in' => $basisProductIds],
                     'status'     => 1
-                ),
+                ],
                 'inner'
             )
             ->addAttributeToSort('alsoviewed_position', 'ASC')
             ->addAttributeToSort('alsoviewed_weight', 'DESC');
 
         if (count($basisProductIds) > 1) {
-            $collection->addAttributeToFilter('entity_id', array('nin' => $basisProductIds));
+            $collection->addAttributeToFilter('entity_id', ['nin' => $basisProductIds]);
             // prevent "Item with the same id already exist" error
             $collection->getSelect()->group('e.entity_id');
         }

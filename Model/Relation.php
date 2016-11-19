@@ -86,12 +86,12 @@ class Relation extends AbstractModel implements RelationInterface
         if (!$this->products) {
             $this->products = $this->productCollectionFactory->create()
                 ->addAttributeToSelect('name')
-                ->addFieldToFilter('entity_id', array(
-                    'in' => array(
+                ->addFieldToFilter('entity_id', [
+                    'in' => [
                         $this->getProductId(),
                         $this->getRelatedProductId()
-                    )
-                ));
+                    ]
+                ]);
         }
         return $this->products;
     }

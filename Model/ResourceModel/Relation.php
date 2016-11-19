@@ -50,11 +50,11 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         // create bidirectional relations
         $data = $relationsData;
         foreach ($relationsData as $relation) {
-            $data[] = array(
+            $data[] = [
                 'product_id'         => $relation['related_product_id'],
                 'related_product_id' => $relation['product_id'],
                 'weight'             => $relation['weight']
-            );
+            ];
         }
 
         $size = $this->backendConfig->getValue(self::CONFIG_PATH_CHUNK_SIZE);

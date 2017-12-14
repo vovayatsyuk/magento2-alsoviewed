@@ -37,16 +37,5 @@
                 <value>widget alsoviewed-products</value>
             </parameter>
         </parameters>
-        <containers>
-            <container name="sidebar.main">
-                <template name="sidebar" value="sidebar" />
-            </container>
-            <container name="content">
-                <template name="grid" value="default" />
-            </container>
-            <container name="sidebar.additional">
-                <template name="sidebar" value="sidebar" />
-            </container>
-        </containers>
     </widget>
 </widgets>

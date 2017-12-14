@@ -24,6 +24,7 @@ class CollectionFactory
      * @param mixed $basis Array or string
      * @param array $data
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function create($basisProductIds, array $data = [])
     {

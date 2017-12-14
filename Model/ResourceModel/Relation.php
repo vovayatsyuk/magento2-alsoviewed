@@ -16,7 +16,6 @@ class Relation extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Magento\Backend\App\ConfigInterface $backendConfig
-     * @param \Magento\Framework\EntityManager\EntityManager $entityManager
      * @param string $connectionName
      */
     public function __construct(

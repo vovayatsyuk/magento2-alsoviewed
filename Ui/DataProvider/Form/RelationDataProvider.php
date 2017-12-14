@@ -13,7 +13,8 @@ class RelationDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param Locator $locator
+     * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\Relation\Collection $collection
+     * @param \Vovayatsyuk\Alsoviewed\Model\Relation\Locator\LocatorInterface $locator
      * @param array $meta
      * @param array $data
      */

@@ -10,9 +10,10 @@ class Log extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     }
 
     /**
-     * @param  int $id      Product Id
-     * @param  array $ids   Related Product Ids
+     * @param  int $id Product Id
+     * @param  array $ids Related Product Ids
      * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function insertRelations($id, $ids)
     {
@@ -36,6 +37,7 @@ class Log extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Retrieve product relations with weight
      *
      * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getGroupedRelations()
     {
@@ -56,6 +58,7 @@ class Log extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Remove orphan records
      *
      * @return int Number of affected rows
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function cleanOrphans()
     {
@@ -89,6 +92,7 @@ class Log extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *
      * @param  string $where
      * @return int Number of affected rows
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function clean($where = '')
     {

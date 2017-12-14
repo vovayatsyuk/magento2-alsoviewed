@@ -21,6 +21,8 @@ class RecentlyViewed implements BasisInterface
 
     /**
      * @param \Magento\Reports\Model\ResourceModel\Product\Index\Viewed\Collection $collection
+     * @param \Magento\Catalog\Model\Product\Visibility $productVisibility
+     * @param \Magento\Customer\Model\Session $customerSession
      */
     public function __construct(
         \Magento\Reports\Model\ResourceModel\Product\Index\Viewed\Collection $collection,

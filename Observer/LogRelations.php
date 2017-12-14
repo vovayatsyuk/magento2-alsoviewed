@@ -28,6 +28,7 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
      * @param \Magento\Framework\Session\SessionManagerInterface $session
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
+     * @param \Vovayatsyuk\Alsoviewed\Helper\Data $helper
      */
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,

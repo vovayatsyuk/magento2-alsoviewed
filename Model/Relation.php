@@ -57,7 +57,7 @@ class Relation extends AbstractModel implements RelationInterface
     /**
      * Retrieve inversed relation
      *
-     * @return Vovayatsyuk\Alsoviewed\Model\Relation
+     * @return \Vovayatsyuk\Alsoviewed\Model\Relation
      */
     public function getInversedRelation()
     {
@@ -79,7 +79,7 @@ class Relation extends AbstractModel implements RelationInterface
     /**
      * Load products that are linked within this relation
      *
-     * @return Magento\Catalog\Model\ResourceModel\Product\Collection
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     public function getProducts()
     {

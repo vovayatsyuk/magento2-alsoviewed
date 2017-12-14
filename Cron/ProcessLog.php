@@ -23,9 +23,9 @@ class ProcessLog
     protected $logger;
 
     /**
-     * @param Context $context
      * @param Log $log
      * @param Relation $relation
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         Log $log,

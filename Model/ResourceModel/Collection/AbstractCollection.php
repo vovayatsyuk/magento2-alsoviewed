@@ -58,7 +58,7 @@ abstract class AbstractCollection
 
     protected function getProductNameTableName()
     {
-        return $this->getConnection()->getTableName('catalog_product_entity_varchar');
+        return $this->getTable('catalog_product_entity_varchar');
     }
 
     protected function getProductNameAttributeId()

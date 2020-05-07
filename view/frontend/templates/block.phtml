@@ -1,7 +1,7 @@
-<?php if ($this->getEnabled()) : ?>
-    <div class="block <?= $block->getBlockCss(); ?>" style="display: none;" data-mage-init='{"Vovayatsyuk_Alsoviewed/js/list": <?= $block->escapeHtmlAttr($block->getJsonConfig()) ?>}'>
+<?php if ($block->getEnabled()) : ?>
+    <div class="block <?= $block->escapeHtml($block->getBlockCss()); ?>" style="display: none;" data-mage-init='{"Vovayatsyuk_Alsoviewed/js/list": <?= $block->escapeHtmlAttr($block->getJsonConfig()) ?>}'>
         <?php if ($block->getBlockTitle()) : ?>
-            <div class="block-title"><strong><?= $block->getBlockTitle(); ?></strong></div>
+            <div class="block-title"><strong><?= $block->escapeHtml($block->getBlockTitle()); ?></strong></div>
         <?php endif; ?>
         <div class="block-content"></div>
     </div>

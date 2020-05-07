@@ -1,8 +1,7 @@
 <?php if (($_products = $block->getLoadedProductCollection()) && $_products->getSize()): ?>
-    <?php $iterator = 1; ?>
     <ol class="product-items<?php echo ($this->getMode() === 'list') ? '' : ' product-items-images' ?>">
         <?php foreach ($_products->getItems() as $_product): ?>
-            <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+            <li class="product-item">
 
             <?php if ($this->getMode() === 'list') : ?>
                 <div class="product-item-info">
@@ -26,10 +25,11 @@
                 <?php endif; ?>
 
             <?php if ($this->getMode() === 'list') : ?>
+                    <div class="abs-add-clearfix"></div>
                 </div>
             <?php endif; ?>
 
-            <?php echo($iterator == count($_products->getItems())+1) ? '</li>' : '' ?>
+            </li>
         <?php endforeach; ?>
     </ol>
 <?php endif; ?>

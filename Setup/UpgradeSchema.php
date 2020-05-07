@@ -16,10 +16,6 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->createLogTable($setup);
         }
 
-        if (version_compare($context->getVersion(), '0.0.3', '<')) {
-            $this->dropForeignKeysFromLogTable($setup);
-        }
-
         if (version_compare($context->getVersion(), '0.1.0', '<')) {
             $this->createRelationTable($setup);
         }
@@ -52,37 +48,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ['unsigned' => true, 'nullable' => false],
                 'Related Product ID'
             )
-            ->addForeignKey(
-                $setup->getFkName('alsoviewed_log', 'product_id', 'catalog_product_entity', 'entity_id'),
-                'product_id',
-                $setup->getTable('catalog_product_entity'),
-                'entity_id',
-                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-            )
-            ->addForeignKey(
-                $setup->getFkName('alsoviewed_log', 'related_product_id', 'catalog_product_entity', 'entity_id'),
-                'related_product_id',
-                $setup->getTable('catalog_product_entity'),
-                'entity_id',
-                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-            )
             ->setComment('Alsoviewed Log Table');
 
         $setup->getConnection()->createTable($table);
-    }
-
-    public function dropForeignKeysFromLogTable(SchemaSetupInterface $setup)
-    {
-        $table = $setup->getTable('alsoviewed_log');
-        $keys = [
-            $setup->getFkName('alsoviewed_log', 'product_id', 'catalog_product_entity', 'entity_id'),
-            $setup->getFkName('alsoviewed_log', 'related_product_id', 'catalog_product_entity', 'entity_id')
-        ];
-
-        foreach ($keys as $key) {
-            $setup->getConnection()->dropForeignKey($table, $key);
-            $setup->getConnection()->dropIndex($table, $key);
-        }
     }
 
     public function createRelationTable(SchemaSetupInterface $setup)

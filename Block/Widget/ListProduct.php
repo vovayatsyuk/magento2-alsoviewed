@@ -50,7 +50,7 @@ class ListProduct extends Template implements \Magento\Widget\Block\BlockInterfa
     public function getJsonConfig()
     {
         $data = $this->getData();
-        $data['template'] = $this->getTemplate();
+        $data['template'] = $this->getListingTemplate();
 
         $unset = [
             'type',
@@ -96,6 +96,8 @@ class ListProduct extends Template implements \Magento\Widget\Block\BlockInterfa
 
     protected function _beforeToHtml()
     {
+        $this->setListingTemplate($this->getTemplate());
+
         if (!$this->getBlockTitle()) {
             $this->setBlockTitle($this->getTitle());
         }

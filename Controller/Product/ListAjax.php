@@ -34,8 +34,13 @@ class ListAjax extends \Magento\Framework\App\Action\Action
 
         $this->_view->loadLayout();
 
+        $data = $this->getRequest()->getParam('block');
         $block = $this->getLayout()->getBlock('alsoviewed.products');
-        $block->addData($this->getRequest()->getParam('block'));
+        $block->addData($data);
+
+        if (!empty($data['template'])) {
+            $block->setTemplate($data['template']);
+        }
 
         $currentUrl = $this->urlHelper->getCurrentBase64Url();
         $refererUrl = $this->urlHelper->getEncodedUrl($this->getRequest()->getParam('referer'));

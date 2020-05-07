@@ -1,6 +1,8 @@
 <?php if ($this->getEnabled()) : ?>
     <div class="block <?= $block->getBlockCss(); ?>" style="display: none;" data-mage-init='{"Vovayatsyuk_Alsoviewed/js/list": <?= $block->escapeHtmlAttr($block->getJsonConfig()) ?>}'>
-        <div class="block-title"><strong><?= $block->getBlockTitle(); ?></strong></div>
+        <?php if ($block->getBlockTitle()) : ?>
+            <div class="block-title"><strong><?= $block->getBlockTitle(); ?></strong></div>
+        <?php endif; ?>
         <div class="block-content"></div>
     </div>
 <?php endif ?>

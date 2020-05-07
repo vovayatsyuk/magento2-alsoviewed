@@ -27,7 +27,7 @@ define([
     }
 
     return function (config, el) {
-        var tab = $(el).closest('[role="tabpanel"]').prev();
+        var tab = $(el).closest('.data.item.content').prev();
 
         if (tab.length) {
             $(el).show();

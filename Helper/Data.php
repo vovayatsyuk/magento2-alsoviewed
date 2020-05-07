@@ -51,6 +51,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
 
         $regexp = '/' . trim($ignoredUserArgents, '/') . '/';
-        return (bool)@preg_match($regexp, $userAgent);
+        return (bool) preg_match($regexp, $userAgent);
     }
 }

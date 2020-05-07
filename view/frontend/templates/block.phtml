@@ -1,8 +1,6 @@
-<?php if ($this->getEnabled() && $this->getChildBlock('products')->getLoadedProductCollection()->count()) : ?>
-    <div class="block <?php /* @escapeNotVerified */ echo $block->getBlockCss(); ?>">
-        <div class="block-title"><strong><?php /* @escapeNotVerified */ echo $block->getBlockTitle(); ?></strong></div>
-        <div class="block-content">
-            <?php echo $block->getChildHtml(); ?>
-        </div>
+<?php if ($this->getEnabled()) : ?>
+    <div class="block <?= $block->getBlockCss(); ?>" style="display: none;" data-mage-init='{"Vovayatsyuk_Alsoviewed/js/list": <?= $block->escapeHtmlAttr($block->getJsonConfig()) ?>}'>
+        <div class="block-title"><strong><?= $block->getBlockTitle(); ?></strong></div>
+        <div class="block-content"></div>
     </div>
 <?php endif ?>

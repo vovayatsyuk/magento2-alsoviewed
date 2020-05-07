@@ -5,27 +5,28 @@ namespace Vovayatsyuk\Alsoviewed\Model\Basis;
 class CurrentProduct implements BasisInterface
 {
     /**
-     * Core registry
-     *
-     * @var \Magento\Framework\Registry
+     * @var \Magento\Framework\App\RequestInterface $request
      */
-    protected $registry;
+    protected $request;
 
     /**
-     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\App\RequestInterface $request
      */
     public function __construct(
-        \Magento\Framework\Registry $registry
+        \Magento\Framework\App\RequestInterface $request
     ) {
-        $this->registry = $registry;
+        $this->request = $request;
     }
 
     public function getIds()
     {
-        $product = $this->registry->registry('current_product');;
-        if ($product) {
-            return [$product->getId()];
+        $result = [];
+
+        $id = $this->request->getParam('id');
+        if ($id) {
+            $result[] = $id;
         }
-        return [];
+
+        return $result;
     }
 }

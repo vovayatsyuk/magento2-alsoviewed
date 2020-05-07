@@ -2,8 +2,37 @@
 
 namespace Vovayatsyuk\Alsoviewed\Block\Widget;
 
-class ListProduct extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
+use Magento\Framework\View\Element\Template;
+
+class ListProduct extends Template implements \Magento\Widget\Block\BlockInterface
 {
+    /**
+     * @var \Magento\Framework\Json\EncoderInterface
+     */
+    protected $jsonEncoder;
+
+    /**
+     * @var \Magento\Framework\Registry
+     */
+    protected $registry;
+
+    /**
+     * @param Template\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Json\EncoderInterface $jsonEncoder
+     * @param array $data
+     */
+    public function __construct(
+        Template\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Json\EncoderInterface $jsonEncoder,
+        array $data = []
+    ) {
+        parent::__construct($context, $data);
+        $this->registry = $registry;
+        $this->jsonEncoder = $jsonEncoder;
+    }
+
     /**
      * This method allows to disable bock in product tabs
      *
@@ -16,6 +45,37 @@ class ListProduct extends \Magento\Framework\View\Element\Template implements \M
             return (bool) $enabled;
         }
         return true;
+    }
+
+    public function getJsonConfig()
+    {
+        $data = $this->getData();
+        $data['template'] = $this->getTemplate();
+
+        $unset = [
+            'type',
+            'title',
+            'module_name',
+            'block_css',
+            'block_title',
+        ];
+        foreach ($unset as $key) {
+            unset($data[$key]);
+        }
+
+        $productId = null;
+        $product = $this->registry->registry('current_product');
+        if ($product) {
+            $productId = $product->getId();
+        }
+
+        return $this->jsonEncoder->encode([
+            'url' => $this->getUrl('alsoviewed/product/listAjax', [
+                '_secure' => $this->getRequest()->isSecure(),
+                'id' => $productId,
+            ]),
+            'blockData' => $data,
+        ]);
     }
 
     /**
@@ -36,19 +96,6 @@ class ListProduct extends \Magento\Framework\View\Element\Template implements \M
 
     protected function _beforeToHtml()
     {
-        // Move widget options into ListProduct block
-        $data = $this->getData();
-        $data['template'] = $this->getTemplate();
-        unset($data['type']);
-        unset($data['module_name']);
-
-        $list = $this->addChild(
-            'products',
-            'Vovayatsyuk\Alsoviewed\Block\ListProduct',
-            $data
-        );
-
-        // ability to use different title (tab) and block title (content)
         if (!$this->getBlockTitle()) {
             $this->setBlockTitle($this->getTitle());
         }

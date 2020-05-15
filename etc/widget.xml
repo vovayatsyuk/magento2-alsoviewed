@@ -7,7 +7,6 @@
         <parameters>
             <parameter name="title" xsi:type="text" required="false" visible="true">
                 <label translate="true">Title</label>
-                <value>People who viewed this product also viewed</value>
             </parameter>
             <parameter name="products_count" xsi:type="text" required="true" visible="true">
                 <label translate="true">Number of Products to Display</label>

@@ -12,5 +12,8 @@
                 </action>
             </block>
         </referenceBlock>
+        <referenceBlock name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="alsoviewed.logger" template="Vovayatsyuk_Alsoviewed::logger.phtml"/>
+        </referenceBlock>
     </body>
 </page>

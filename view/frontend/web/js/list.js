@@ -1,41 +1,21 @@
 define([
     'jquery',
-    'underscore'
-], function ($, _) {
+    'Vovayatsyuk_Alsoviewed/js/storage'
+], function ($, storage) {
     'use strict';
-
-    function getProductIdsFromLocalStorage(namespace, limit) {
-        var ids = [],
-            data = localStorage.getItem(namespace);
-
-        if (!data) {
-            return ids;
-        }
-
-        try {
-            data = JSON.parse(data);
-        } catch (e) {
-            data = {};
-        }
-
-        data = _.sortBy(data, 'added_at');
-        ids = _.pluck(data, 'product_id');
-
-        return ids.slice(Math.max(ids.length - limit, 0));
-    }
 
     /**
      * @return {Array}
      */
     function getRecentlyComparedProductIds() {
-        return getProductIdsFromLocalStorage('recently_compared_product', 5);
+        return storage.getIds('recently_compared_product', 5);
     }
 
     /**
      * @return {Array}
      */
     function getRecentlyViewedProductIds() {
-        return getProductIdsFromLocalStorage('recently_viewed_product', 5);
+        return storage.getIds('recently_viewed_product', 5);
     }
 
     /**
@@ -53,6 +33,7 @@ define([
             if (config.blockData.basis.indexOf('compared') !== -1) {
                 data.recently_compared_ids = getRecentlyComparedProductIds().join(',');
             }
+
             if (config.blockData.basis.indexOf('viewed') !== -1) {
                 data.recently_viewed_ids = getRecentlyViewedProductIds().join(',');
             }
@@ -92,5 +73,5 @@ define([
         }
 
         loadProducts(config, el);
-    }
+    };
 });

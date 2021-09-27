@@ -5,6 +5,16 @@ namespace Vovayatsyuk\Alsoviewed\Helper;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
+     * Get size of recently viewed products storage
+     *
+     * @return integer
+     */
+    public function getLogLimit()
+    {
+        return $this->scopeConfig->getValue('alsoviewed/session/limit');
+    }
+
+    /**
      * Check is ip address is in ignore list
      *
      * @return boolean

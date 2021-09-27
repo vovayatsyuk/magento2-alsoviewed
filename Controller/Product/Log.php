@@ -1,60 +1,53 @@
 <?php
 
-namespace Vovayatsyuk\Alsoviewed\Observer;
+namespace Vovayatsyuk\Alsoviewed\Controller\Product;
 
-class LogRelations implements \Magento\Framework\Event\ObserverInterface
+use Magento\Framework\Controller\ResultFactory;
+
+class Log extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var \Magento\Framework\Session\SessionManagerInterface
      */
-    protected $session;
-
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
+    private $session;
 
     /**
      * @var \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory
      */
-    protected $logFactory;
+    private $logFactory;
 
     /**
      * @var \Vovayatsyuk\Alsoviewed\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * @param \Magento\Framework\Session\SessionManagerInterface $session
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory
-     * @param \Vovayatsyuk\Alsoviewed\Helper\Data $helper
+     * @param \Magento\Framework\Url\Helper\Data $urlHelper
+     * @param \Magento\Framework\App\Action\Context $context
      */
     public function __construct(
         \Magento\Framework\Session\SessionManagerInterface $session,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Vovayatsyuk\Alsoviewed\Model\ResourceModel\LogFactory $logFactory,
-        \Vovayatsyuk\Alsoviewed\Helper\Data $helper
+        \Vovayatsyuk\Alsoviewed\Helper\Data $helper,
+        \Magento\Framework\App\Action\Context $context
     ) {
         $this->session = $session;
-        $this->scopeConfig = $scopeConfig;
         $this->logFactory = $logFactory;
         $this->helper = $helper;
+
+        return parent::__construct($context);
     }
 
     /**
-     * Save product relations to log table
-     *
-     * @param  \Magento\Framework\Event\Observer $observer
      * @return void
      */
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute()
     {
         if ($this->canIgnoreRequest()) {
-            return;
+            return $this->_redirect('/');
         }
 
-        $productId = $observer->getControllerAction()->getRequest()->getParam('id');
+        $productId = $this->getRequest()->getParam('id');
         $viewedIds = $this->getRecentlyViewedProductIds();
 
         if ($productId && !in_array($productId, $viewedIds)) {
@@ -63,6 +56,10 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
             }
             $this->addRecentlyViewedProductId($productId);
         }
+
+        return $this->resultFactory
+            ->create(ResultFactory::TYPE_JSON)
+            ->setData([]);
     }
 
     /**
@@ -73,14 +70,15 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     protected function addRecentlyViewedProductId($id)
     {
         $ids = $this->getRecentlyViewedProductIds();
-        $limit = $this->scopeConfig->getValue('alsoviewed/session/limit');
+        $limit = $this->helper->getLogLimit();
         $offset = count($ids) - $limit;
+
         if ($offset > 0) {
             $ids = array_slice($ids, $offset);
         }
+
         $ids[] = $id;
         $this->session->setAlsoviewedProductIds($ids);
-        return $this;
     }
 
     /**
@@ -91,20 +89,22 @@ class LogRelations implements \Magento\Framework\Event\ObserverInterface
     protected function getRecentlyViewedProductIds()
     {
         $ids = $this->session->getAlsoviewedProductIds();
+
         if (!$ids) {
             return [];
         }
+
         return $ids;
     }
 
     /**
-     * Returns is request can be ignored
-     *
      * @return boolean
      */
     protected function canIgnoreRequest()
     {
-        return $this->helper->isUserAgentIgnored()
+        return !$this->getRequest()->isAjax()
+            || !$this->getRequest()->isPost()
+            || $this->helper->isUserAgentIgnored()
             || $this->helper->isIpAddressIgnored();
     }
 }

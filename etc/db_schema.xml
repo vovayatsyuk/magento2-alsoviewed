@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="alsoviewed_log" resource="default" engine="innodb" comment="Alsoviewed Log Table">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+    <column xsi:type="int" name="related_product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Related Product ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="alsoviewed_relation" resource="default" engine="innodb" comment="Alsoviewed Log Table">
+    <column xsi:type="int" name="relation_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Relation ID"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+    <column xsi:type="int" name="related_product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Related Product ID"/>
+    <column xsi:type="int" name="weight" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Relation Weight"/>
+    <column xsi:type="int" name="position" padding="11" unsigned="false" nullable="false" identity="false" default="50" comment="Custom Sort Order"/>
+    <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="Status"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Date"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="relation_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="ALSOVIEWED_RELATION_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="alsoviewed_relation" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="ALSOVIEWED_RELATION_RELATED_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="alsoviewed_relation" column="related_product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="ALSOVIEWED_RELATION_PRODUCT_ID_RELATED_PRODUCT_ID">
+      <column name="product_id"/>
+      <column name="related_product_id"/>
+    </constraint>
+    <index referenceId="ALSOVIEWED_RELATION_PRODUCT_ID" indexType="btree">
+      <column name="product_id"/>
+    </index>
+    <index referenceId="ALSOVIEWED_RELATION_WEIGHT_POSITION" indexType="btree">
+      <column name="weight"/>
+      <column name="position"/>
+    </index>
+    <index referenceId="ALSOVIEWED_RELATION_STATUS" indexType="btree">
+      <column name="status"/>
+    </index>
+    <index referenceId="ALSOVIEWED_RELATION_UPDATED_AT" indexType="btree">
+      <column name="updated_at"/>
+    </index>
+  </table>
+</schema>

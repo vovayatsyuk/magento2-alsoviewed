@@ -1,0 +1,35 @@
+{
+    "alsoviewed_log": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "related_product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "alsoviewed_relation": {
+        "column": {
+            "relation_id": true,
+            "product_id": true,
+            "related_product_id": true,
+            "weight": true,
+            "position": true,
+            "status": true,
+            "updated_at": true
+        },
+        "index": {
+            "ALSOVIEWED_RELATION_PRODUCT_ID": true,
+            "ALSOVIEWED_RELATION_WEIGHT_POSITION": true,
+            "ALSOVIEWED_RELATION_STATUS": true,
+            "ALSOVIEWED_RELATION_UPDATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ALSOVIEWED_RELATION_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true,
+            "ALSOVIEWED_RELATION_RELATED_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "ALSOVIEWED_RELATION_PRODUCT_ID_RELATED_PRODUCT_ID": true
+        }
+    }
+}

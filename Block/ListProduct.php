@@ -3,6 +3,8 @@
 namespace Vovayatsyuk\Alsoviewed\Block;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Catalog\ViewModel\Product\OptionsData;
+use Magento\Framework\App\ObjectManager;
 
 class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 {
@@ -109,6 +111,12 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     {
         // Do not call parent! Parent logic is copied to prepareToolbar method.
         // It was done to allow to get collection without block rendering.
+
+        if (class_exists(OptionsData::class)) {
+            $viewModel = ObjectManager::getInstance()->create(OptionsData::class);
+            $this->setData('viewModel', $viewModel);
+            $this->assign('viewModel', $viewModel);
+        }
     }
 
     public function getToolbarHtml()

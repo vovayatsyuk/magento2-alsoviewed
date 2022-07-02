@@ -2,6 +2,8 @@
 
 namespace Vovayatsyuk\Alsoviewed\Model\ResourceModel\Collection;
 
+use Magento\Catalog\Api\Data\ProductInterface;
+
 abstract class AbstractCollection
     extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
     implements CollectionInterface
@@ -13,6 +15,8 @@ abstract class AbstractCollection
     ]];
 
     protected $attributeCollectionFactory;
+
+    protected $metadataPool;
 
     protected $productNameAttributeId;
 
@@ -31,18 +35,23 @@ abstract class AbstractCollection
         \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attributeCollectionFactory,
+        \Magento\Framework\EntityManager\MetadataPool $metadataPool,
         \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
         \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     ) {
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
         $this->attributeCollectionFactory = $attributeCollectionFactory;
+        $this->metadataPool = $metadataPool;
     }
 
     public function addProductNameToSelect($alias = 'product_name', $column = 'product_id')
     {
+        $entityMetadata = $this->metadataPool->getMetadata(ProductInterface::class);
+        $linkField = $entityMetadata->getLinkField();
+
         $this->getSelect()->join(
                 [$alias => $this->getProductNameTableName()],
-                "{$column} = {$alias}.entity_id",
+                "{$column} = {$alias}.{$linkField}",
                 [$alias => 'value']
             )
             ->where("{$alias}.store_id = ?", 0)

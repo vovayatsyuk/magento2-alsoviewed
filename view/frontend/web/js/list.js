@@ -42,18 +42,20 @@ define([
         $.ajax({
             url: config.url,
             method: 'post',
-            data: data
-        }).done(function (json) {
-            var content = $(el).children('.block-content').first();
+            data: data,
+            success: function (json) {
+                var content = $(el).children('.block-content').first();
 
-            if ($(json.html).find('.product-item').length) {
-                $(el).show();
+                if ($(json.html).find('.product-item').length) {
+                    $(el).show();
+                }
+
+                content.html(json.html).trigger('contentUpdated');
+                content.children().applyBindings();
+            },
+            complete: function () {
+                $(el).attr('aria-busy', false);
             }
-
-            content.html(json.html).trigger('contentUpdated');
-            content.children().applyBindings();
-        }).complete(function () {
-            $(el).attr('aria-busy', false);
         });
     }
 

@@ -1,15 +1,31 @@
 define([
-    'jquery',
-    'Vovayatsyuk_Alsoviewed/js/storage'
-], function ($, storage) {
+    'jquery'
+], function ($) {
     'use strict';
 
-    return function (config) {
-        var latestProducts = storage.getIds('recently_viewed_product', config.limit);
+    var key = 'alsoviewed_ids',
+        result;
 
-        if (latestProducts.indexOf(config.id) > -1) {
-            return;
+    function isRegistered(id, limit) {
+        return (localStorage.getItem(key) || '').split(',').slice(0, limit).includes(id);
+    }
+
+    function register(id) {
+        var data = (localStorage.getItem(key) || `${id}`).split(',').filter(n => n);
+
+        data.unshift(id);
+        data = [...new Set(data)]; // unique
+        data = data.slice(0, 30);
+
+        localStorage.setItem(key, data.join(','));
+    }
+
+    result = function (config) {
+        if (isRegistered(config.id, config.limit)) {
+            return register(config.id);
         }
+
+        register(config.id);
 
         $.ajax({
             method: 'post',
@@ -20,4 +36,8 @@ define([
             }
         });
     };
+
+    result.component = 'Vovayatsyuk_Alsoviewed/js/logger';
+
+    return result;
 });

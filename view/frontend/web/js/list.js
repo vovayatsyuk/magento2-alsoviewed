@@ -4,6 +4,8 @@ define([
 ], function ($, storage) {
     'use strict';
 
+    var result;
+
     /**
      * @return {Array}
      */
@@ -59,14 +61,14 @@ define([
         });
     }
 
-    return function (config, el) {
+    result = function (config, el) {
         var tab = $(el).closest('.data.item.content').prev();
 
         if (tab.length) {
             $(el).show();
 
             if (!tab.hasClass('active')) {
-                tab.one('beforeOpen', function () {
+                tab.one('beforeOpen collapsible:beforeOpen', function () {
                     loadProducts(config, el);
                 });
             }
@@ -76,4 +78,8 @@ define([
 
         loadProducts(config, el);
     };
+
+    result.component = 'Vovayatsyuk_Alsoviewed/js/list';
+
+    return result;
 });

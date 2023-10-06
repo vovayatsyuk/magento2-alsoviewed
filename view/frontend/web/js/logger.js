@@ -11,7 +11,7 @@ define([
     }
 
     function register(id) {
-        var data = (localStorage.getItem(key) || `${id}`).split(',').filter(n => n);
+        var data = (localStorage.getItem(key) || `${id}`).split(',');
 
         data.unshift(id);
         data = [...new Set(data)]; // unique

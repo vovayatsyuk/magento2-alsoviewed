@@ -63,22 +63,22 @@ define([
 
     result = function (config, el) {
         var container = $(el).closest('.product.data.items'),
-            index = container.find('.data.item.content').index(el),
+            index = container.find('.data.item.content').index(el.closest('.data.item.content')),
             tab = container.find('.data.item.title').eq(index);
 
-        if (tab.length) {
-            $(el).show();
-
-            if (!tab.hasClass('active')) {
-                tab.one('beforeOpen collapsible:beforeOpen', function () {
-                    loadProducts(config, el);
-                });
-            }
-
-            return;
+        if (!tab.length) {
+            return loadProducts(config, el);
         }
 
-        loadProducts(config, el);
+        $(el).show();
+
+        if (tab.hasClass('active')) {
+            return loadProducts(config, el);
+        }
+
+        tab.one('beforeOpen collapsible:beforeOpen', function () {
+            loadProducts(config, el);
+        });
     };
 
     result.component = 'Vovayatsyuk_Alsoviewed/js/list';

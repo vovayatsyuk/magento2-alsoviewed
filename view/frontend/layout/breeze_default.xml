@@ -9,6 +9,9 @@
                         <item name="items" xsi:type="array">
                             <item name="Vovayatsyuk_Alsoviewed/js/list" xsi:type="array">
                                 <item name="path" xsi:type="string">Vovayatsyuk_Alsoviewed/js/list</item>
+                                <item name="import" xsi:type="array">
+                                    <item name="storage" xsi:type="string">Vovayatsyuk_Alsoviewed/js/storage</item>
+                                </item>
                             </item>
                             <item name="Vovayatsyuk_Alsoviewed/js/logger" xsi:type="array">
                                 <item name="path" xsi:type="string">Vovayatsyuk_Alsoviewed/js/logger</item>

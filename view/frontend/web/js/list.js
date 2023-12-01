@@ -62,7 +62,9 @@ define([
     }
 
     result = function (config, el) {
-        var tab = $(el).closest('.data.item.content').prev();
+        var container = $(el).closest('.product.data.items'),
+            index = container.find('.data.item.content').index(el),
+            tab = container.find('.data.item.title').eq(index);
 
         if (tab.length) {
             $(el).show();

@@ -3,7 +3,8 @@ define([
 ], function (_) {
     'use strict';
 
-    var result = {
+    return {
+        component: 'Vovayatsyuk_Alsoviewed/js/storage',
         getIds: function (namespace, limit) {
             var ids = [],
                 data = localStorage.getItem(namespace);
@@ -24,8 +25,4 @@ define([
             return ids.slice(Math.max(ids.length - limit, 0));
         }
     };
-
-    result.component = 'Vovayatsyuk_Alsoviewed/js/storage';
-
-    return result;
 });
